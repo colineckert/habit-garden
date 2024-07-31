@@ -22,10 +22,8 @@ export default function RootLayout({
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
           <TRPCReactProvider>
-            <div className="grid h-screen grid-rows-[auto,1fr]">
-              <TopNav />
-              <main>{children}</main>
-            </div>
+            <TopNav />
+            {children}
           </TRPCReactProvider>
         </body>
       </html>
