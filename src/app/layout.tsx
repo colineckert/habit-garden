@@ -6,6 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { TopNav } from "./_components/topnav";
 
 export const metadata: Metadata = {
   title: "Habit Garden",
@@ -20,7 +21,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <TRPCReactProvider>
+            <div className="grid h-screen grid-rows-[auto,1fr]">
+              <TopNav />
+              <main>{children}</main>
+            </div>
+          </TRPCReactProvider>
         </body>
       </html>
     </ClerkProvider>
