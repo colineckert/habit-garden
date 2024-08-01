@@ -1,7 +1,11 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import { Button } from "~/components/ui/button";
 import { HydrateClient } from "~/trpc/server";
 
 export default async function Home() {
+  const user = await currentUser();
+
   return (
     <HydrateClient>
       <main className="flex min-h-screen flex-col items-center justify-center">
@@ -13,8 +17,9 @@ export default async function Home() {
         <SignedIn>
           <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
             <h1 className="text-center text-4xl font-bold">
-              Create a new habit
+              {user?.firstName}&rsquo;s Habit Garden
             </h1>
+            <Button>Track a New Habit</Button>
           </div>
         </SignedIn>
       </main>
