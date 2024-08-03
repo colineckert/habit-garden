@@ -6,7 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import { TopNav } from "./_components/topnav";
+import { TopNav } from "./_components/TopNav";
 
 export const metadata: Metadata = {
   title: "Habit Garden",
