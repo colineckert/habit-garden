@@ -2,7 +2,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { Button } from "~/components/ui/button";
 import { HydrateClient } from "~/trpc/server";
-import { HabitList } from "./_components/HabitList";
+import { HabitList } from "~/components/HabitList";
 
 export default async function Home() {
   const user = await currentUser();
