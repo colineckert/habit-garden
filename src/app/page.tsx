@@ -11,6 +11,7 @@ export default async function Home() {
     <HydrateClient>
       <main className="flex min-h-screen flex-col items-center justify-center">
         <SignedOut>
+          <h1 className="pb-2 text-4xl font-bold">Welcome to Habit Garden</h1>
           <div className="h-full w-full text-center text-2xl">
             Please sign in above
           </div>
