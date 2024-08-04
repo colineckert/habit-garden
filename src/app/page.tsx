@@ -1,8 +1,8 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
-import { Button } from "~/components/ui/button";
 import { HydrateClient } from "~/trpc/server";
 import { HabitList } from "~/components/HabitList";
+import { CreateHabitButton } from "~/components/CreateHabitButton";
 
 export default async function Home() {
   const user = await currentUser();
@@ -21,7 +21,7 @@ export default async function Home() {
             <h1 className="text-center text-4xl font-bold">
               {user?.firstName}&rsquo;s Habit Garden
             </h1>
-            <Button>Track a New Habit</Button>
+            <CreateHabitButton />
             <HabitList />
           </div>
         </SignedIn>
