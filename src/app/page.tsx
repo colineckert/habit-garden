@@ -1,24 +1,54 @@
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
-  const habits = await db.query.habits.findMany();
+async function Habits() {
+  const user = auth();
+
+  if (!user?.userId) {
+    return null;
+  }
+
+  const habits = await db.query.habits.findMany({
+    where: (habit, { eq }) => eq(habit.userId, user.userId),
+    orderBy: (habit, { asc }) => asc(habit.createdAt),
+  });
+
+  if (!habits.length) {
+    return (
+      <div className="h-full w-full text-center text-2xl">
+        <div className="pb-2 text-3xl font-bold">Welcome to Habit Garden</div>
+        <button>Get started by adding a habit</button>
+      </div>
+    );
+  }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Welcome to Habit Garden
-        </h1>
-      </div>
+    <div className="h-full w-full text-center">
+      <div className="text-2xl font-semibold">Habits</div>
       <ul>
         {habits.map((habit) => (
-          <li key={habit.id}>
-            <h2>{habit.name}</h2>
-          </li>
+          <li key={habit.id}>{habit.name}</li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+export default async function HomePage() {
+  return (
+    <main className="py-12">
+      <SignedOut>
+        <div className="h-full w-full text-center text-2xl">
+          <h1 className="pb-2 text-3xl font-bold">Welcome to Habit Garden</h1>
+          <div>Please sign in above</div>
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <Habits />
+      </SignedIn>
     </main>
   );
 }
