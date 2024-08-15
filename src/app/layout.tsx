@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { TopNav } from "~/_components/TopNav";
+import { TopNav } from "./_components/TopNav";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
