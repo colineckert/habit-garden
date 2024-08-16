@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
+import { Button } from "./ui/button";
 
 export async function HabitList() {
   const user = auth();
@@ -16,8 +17,8 @@ export async function HabitList() {
   if (!habits.length) {
     return (
       <div className="h-full w-full text-center text-2xl">
-        <div className="pb-2 text-3xl font-bold">Welcome to Habit Garden</div>
-        <button>Get started by adding a habit</button>
+        <div className="pb-3 text-3xl font-bold">Welcome to Habit Garden</div>
+        <Button>Track Your First Habit</Button>
       </div>
     );
   }
