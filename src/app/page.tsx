@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { CreateButton } from "~/components/CreateButton";
 import { HabitList } from "~/components/HabitList";
-import { Button } from "~/components/ui/button";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +16,7 @@ export default function HomePage() {
       <SignedIn>
         <div className="h-full w-full text-center">
           <HabitList />
-          <Button>Track New Habit</Button>
+          <CreateButton />
         </div>
       </SignedIn>
     </main>
