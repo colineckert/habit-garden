@@ -1,18 +1,8 @@
-import { auth } from "@clerk/nextjs/server";
-import { db } from "~/server/db";
 import { Button } from "./ui/button";
+import { getUserHabits } from "~/server/queries";
 
 export async function HabitList() {
-  const user = auth();
-
-  if (!user?.userId) {
-    return null;
-  }
-
-  const habits = await db.query.habits.findMany({
-    where: (habit, { eq }) => eq(habit.userId, user.userId),
-    orderBy: (habit, { asc }) => asc(habit.createdAt),
-  });
+  const habits = await getUserHabits();
 
   if (!habits.length) {
     return (

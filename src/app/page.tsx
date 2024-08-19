@@ -3,7 +3,7 @@ import { HabitList } from "~/components/HabitList";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <main className="py-12">
       <SignedOut>
