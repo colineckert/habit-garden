@@ -6,7 +6,7 @@ export async function HabitList() {
 
   if (!habits.length) {
     return (
-      <div className="h-full w-full text-center text-2xl">
+      <div className="p-4">
         <div className="pb-3 text-3xl font-bold">Welcome to Habit Garden</div>
         <Button>Track Your First Habit</Button>
       </div>
@@ -14,7 +14,7 @@ export async function HabitList() {
   }
 
   return (
-    <div className="h-full w-full text-center">
+    <div className="p-4">
       <div className="text-2xl font-semibold">Habits</div>
       <ul>
         {habits.map((habit) => (
